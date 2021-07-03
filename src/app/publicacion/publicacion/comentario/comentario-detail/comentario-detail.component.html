@@ -27,9 +27,6 @@
         </summary>
 
         <div class="comment-body">
-            <!-- <p>
-                {{comment?.content}}
-            </p> -->
             <p class="card-text mt-2" [innerHTML]="comment?.content | salto"></p>
 			<a role="button" (click)="replyClick()" class="badge badge-secondary mb-2"  *ngIf="auth.user$ | async">Responder</a>
 			<app-comentario-box (add)="onAdd($event)" *ngIf="isEditing"></app-comentario-box>

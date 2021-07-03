@@ -33,9 +33,9 @@
                 <img [src]="usuario.avatar" class="m-3 rounded-circle" width="60" alt="..." />
                 <div class="media-body">
                   <h5 class="mt-2 mb-0">
-                    {{ usuario.displayName | titlecase }}
+                    {{ usuario?.displayName | titlecase }}
                   </h5>
-                  ({{ usuario.dni }})
+                  ({{ usuario?.dni }})
                   <hr class="mt-1 mb-1" />
                   <div class="d-flex w-100 justify-content-between mt-2 mb-2">
                     <form>
@@ -51,13 +51,6 @@
                         *ngIf="auth.canDelete(auth.user$ | async)" (click)="deleteUsusario(usuario)">
                         Eliminar
                       </button>
-                      <!-- <button type="button" class="btn btn-outline-secondary btn-sm m-1 mr-2"
-                        (click)="exportFiles(usuario.dni)">
-                        Exportar
-                      </button>
-                      <button type="button" class="btn btn-outline-dark btn-sm m-1 mr-2" (click)="goReporte(usuario)">
-                        Reporte
-                      </button> -->
                     </form>
                   </div>
                 </div>
@@ -88,13 +81,7 @@
                   </button>
                 </form>
                 <form>
-                  <button type="button" class="btn btn-outline-secondary btn-sm m-1 mr-2"
-                    (click)="exportFiles(usuarioB.dni)">
-                    Exportar
-                  </button>
-                  <button type="button" class="btn btn-outline-dark btn-sm m-1 mr-2" (click)="goReporte(usuarioB)">
-                    Reporte
-                  </button>
+
                 </form>
               </div>
             </div>
