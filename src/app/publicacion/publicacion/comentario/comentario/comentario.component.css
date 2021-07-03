@@ -1,0 +1,15 @@
+
+
+
+.miScroll {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.miScroll::-webkit-scrollbar {
+  width: 7px;
+}
+.miScroll::-webkit-scrollbar-thumb {
+  background: #0275d8;
+  border-radius: 5px;
+}

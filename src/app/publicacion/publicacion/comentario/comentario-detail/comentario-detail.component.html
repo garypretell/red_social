@@ -1,0 +1,42 @@
+
+<div class="comment-thread">
+    <details open class="comment" id="comment-1">
+        <a href="#comment-1" class="comment-border-link">
+            <span class="sr-only">Jump to comment-1</span>
+        </a>
+        <summary>
+            <div class="comment-heading">
+                <div class="comment-voting">
+                    <button type="button">
+                        <span aria-hidden="true">&#9650;</span>
+                        <span class="sr-only">Vote up</span>
+                    </button>
+                    <button type="button">
+                        <span aria-hidden="true">&#9660;</span>
+                        <span class="sr-only">Vote down</span>
+                    </button>
+                </div>
+                <div class="comment-info">
+                    <a href="#" class="comment-author">{{comment?.nickname}}</a>
+                    <p class="m-0">
+                        22 points &bull; {{comment?.date  | amLocale: "es" | amTimeAgo }}
+                    </p>
+                    
+                </div>
+            </div>
+        </summary>
+
+        <div class="comment-body">
+            <!-- <p>
+                {{comment?.content}}
+            </p> -->
+            <p class="card-text mt-2" [innerHTML]="comment?.content | salto"></p>
+			<a role="button" (click)="replyClick()" class="badge badge-secondary mb-2"  *ngIf="auth.user$ | async">Responder</a>
+			<app-comentario-box (add)="onAdd($event)" *ngIf="isEditing"></app-comentario-box>
+        </div>
+
+        <div class="replies">
+			<app-comentario-detail [publicacion]="publicacion"  *ngFor="let c of comment?.child" [comment]="c"></app-comentario-detail>
+        </div>
+    </details>
+</div>

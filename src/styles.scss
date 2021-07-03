@@ -1,0 +1,74 @@
+/* Add application styles & imports to this file! */
+html{
+  scroll-behavior: smooth;
+}
+*{
+  box-sizing: border-box;
+}
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Define Global Variables
+
+/* BUTTONS */
+$primary-button-color: #1877F2;
+$success-button-color: #42B72A;
+
+/* OTHER COLORS */
+$header-color: white;
+$body-color: #F0F2F5;
+
+
+.replies {
+    border-top: 1px solid #c3c3c3;
+      padding: 10px 5px;
+      border-radius: 2px;
+      display: block;
+      margin-left: 80px;
+  }
+  
+  .main{
+    display: flex;
+    
+  }
+  
+  .replies .left button:nth-child(1) {
+    transform: rotate(90deg)
+  }
+  
+  .replies .left button:last-child {
+    transform: rotate(90deg)
+  }
+  
+  .replies .left {
+    text-align: center;
+    margin: 2px;
+    padding: 1px;
+  }
+  .right {
+    padding: 2px;
+    width: 100%;
+  }
+  .detail {
+    padding: 2px
+  }
+  .user {
+    color: #6391fb;
+  }
+  
+  .user+.date {
+    margin-left: 5px;
+    opacity: 0.6;
+  }
+
+
+
+  body::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+      background: #aca3e4;
+      border-radius: 5px;
+  }

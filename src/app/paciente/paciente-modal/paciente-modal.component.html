@@ -1,0 +1,340 @@
+<div class="modal" id="myModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ tittle }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="pacienteForm.baseForm">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="nombres" class="form-label">Nombres:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombres"
+                  placeholder="Nombres"
+                  formControlName="nombres"
+                  required
+                />
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="nombres?.invalid && (nombres?.dirty || nombres?.touched)"
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('nombres')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "nombres") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="apellidos" class="form-label">Apellidos:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="apellidos"
+                  placeholder="Apellidos"
+                  formControlName="apellidos"
+                  required
+                />
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="
+                    apellidos?.invalid && (apellidos?.dirty || apellidos?.touched)
+                  "
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('apellidos')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "apellidos") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="sexo" class="form-label">Sexo:</label>
+                <select
+                  class="form-control"
+                  aria-label="Default select example"
+                  formControlName="sexo"
+                >
+                  <option value="1">Femenino</option>
+                  <option value="2">Masculino</option>
+                </select>
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="sexo?.invalid && (sexo?.dirty || sexo?.touched)"
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('sexo')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "sexo") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dni" class="form-label">DNI</label>
+                <input
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="8"
+                  formControlName="dni"
+                  type="text"
+                  class="form-control"
+                  id="dni"
+                  required
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                />
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="dni?.invalid && (dni?.dirty || dni?.touched)"
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('dni')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "dni") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="estadoCivil" class="form-label">Estado Civil</label>
+                <select
+                  class="form-control"
+                  aria-label="Default select example"
+                  formControlName="estadoCivil"
+                >
+                  <option value="1">Soltero</option>
+                  <option value="2">Casado</option>
+                </select>
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="
+                    estadoCivil?.invalid &&
+                    (estadoCivil?.dirty || estadoCivil?.touched)
+                  "
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('estadoCivil')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "estadoCivil") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="fechaNacimiento" class="form-label"
+                >Fecha de Nacimiento:</label
+              >
+              <input type="date" name="fechaNacimiento" class="form-control"  formControlName="fechaNacimiento" id="">
+              <div
+                class="text-danger"
+                style="font-size: 12px"
+                *ngIf="
+                  fechaNacimiento?.invalid &&
+                  (fechaNacimiento?.dirty || fechaNacimiento?.touched)
+                "
+              >
+                <ng-container
+                  *ngFor="
+                    let error of pacienteForm.errors(
+                      pacienteForm.baseForm.get('fechaNacimiento')!
+                    )
+                  "
+                >
+                  {{ pacienteForm.handleError(error, "fechaNacimiento") }}
+                  <br />
+                </ng-container>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="celular" class="form-label"
+                >Celular</label
+              >
+              <input
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                maxlength="9"
+                formControlName="celular"
+                class="form-control"
+                id="celular"
+                required
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+              />
+              <div
+                class="text-danger"
+                style="font-size: 12px"
+                *ngIf="celular?.invalid && (celular?.dirty || celular?.touched)"
+              >
+                <ng-container
+                  *ngFor="
+                    let error of pacienteForm.errors(
+                      pacienteForm.baseForm.get('celular')!
+                    )
+                  "
+                >
+                  {{ pacienteForm.handleError(error, "celular") }} <br />
+                </ng-container>
+              </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="correo" class="form-label">Correo</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="correo"
+                  formControlName="correo"
+                  required
+                />
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="correo?.invalid && (correo?.dirty || correo?.touched)"
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('correo')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "correo") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="direccion" class="form-label">Dirección</label>
+                <textarea
+                  class="form-control"
+                  id="direccion"
+                  formControlName="direccion"
+                  rows="1"
+                ></textarea>
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="
+                    direccion?.invalid && (direccion?.dirty || direccion?.touched)
+                  "
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm.get('direccion')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "direccion") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="observacion" class="form-label">Observacion</label>
+                <textarea
+                  class="form-control"
+                  id="observacion"
+                  formControlName="observacion"
+                  rows="3"
+                ></textarea>
+                <div
+                  class="text-danger"
+                  style="font-size: 12px"
+                  *ngIf="
+                    observacion?.invalid &&
+                    (observacion?.dirty || observacion?.touched)
+                  "
+                >
+                  <ng-container
+                    *ngFor="
+                      let error of pacienteForm.errors(
+                        pacienteForm.baseForm!.get('observacion')!
+                      )
+                    "
+                  >
+                    {{ pacienteForm.handleError(error, "observacion") }} <br />
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              [disabled]="!pacienteForm.baseForm.valid"
+              (click)="save()"
+            >
+              {{actionTODO === 'new' ? 'Registrar' : 'Actualizar'}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

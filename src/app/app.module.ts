@@ -1,18 +1,50 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MomentModule } from 'ngx-moment';
+import { AppHeaderComponent } from './app-header/app-header.component';
+import { TooltipDirective } from './shared/directive/tooltip.directive';
+import { SafePipe } from './shared/pipes/safe.pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { TagInputModule } from 'ngx-chips';
+import { AuthInterceptorService } from './shared/authInterceptor';
+
+export function tokenGetter(): any {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppHeaderComponent,
+    TooltipDirective,
+    SafePipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MomentModule,
+    InfiniteScrollModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      },
+    }),
+    TagInputModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

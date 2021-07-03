@@ -1,0 +1,174 @@
+<div class="container mt-5" style="margin-top: 70px !important;">
+  <div class="row h-100">
+    <div class="col-sm-12 col-md-4 mb-4">
+      <div class="d-flex justify-content-between">
+        <form>
+          <h5>USUARIOS</h5>
+        </form>
+        <form>
+          <!-- <span role="button" class="badge badge-primary" (click)="nuevoUsaurio()">NUEVO</span> -->
+        </form>
+      </div>
+      <hr class="mt-1" />
+      <div class="input-group mb-2">
+        <input type="search" class="form-control text-uppercase" id="inlineFormInputGroup" placeholder="Buscar Usuario"
+        (keyup.enter)="buscarUduarioxDNI($event)" />
+      </div>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Mensaje!</strong> Modifica privilegios de cada usuario.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <tag-input [(ngModel)]="dni" [displayBy]="'dni'" [identifyBy]="'id'" [hideForm]="true"
+        (onRemove)="onRemove($event)">
+      </tag-input>
+    </div>
+    <div class="col-sm-12 col-md-8 bg-light inicio" *ngIf="!resultado; else busqueda">
+      <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown($event)">
+        <ng-container *ngFor="let usuario of usuarios | async">
+          <ul class="list-unstyled mb-4">
+            <div class="shadow-sm card mt-2">
+              <li class="media">
+                <img [src]="usuario.avatar" class="m-3 rounded-circle" width="60" alt="..." />
+                <div class="media-body">
+                  <h5 class="mt-2 mb-0">
+                    {{ usuario.displayName | titlecase }}
+                  </h5>
+                  ({{ usuario.dni }})
+                  <hr class="mt-1 mb-1" />
+                  <div class="d-flex w-100 justify-content-between mt-2 mb-2">
+                    <form>
+                      <button type="button" class="btn btn-outline-primary btn-sm m-1" (click)="editUsuario(usuario)"
+                        *ngIf="auth.canDelete(auth.user$ | async)">
+                        Editar
+                      </button>
+                      
+                    </form>
+                    <form>
+
+                      <button type="button" class="btn btn-outline-danger btn-sm m-1"
+                        *ngIf="auth.canDelete(auth.user$ | async)" (click)="deleteUsusario(usuario)">
+                        Eliminar
+                      </button>
+                      <!-- <button type="button" class="btn btn-outline-secondary btn-sm m-1 mr-2"
+                        (click)="exportFiles(usuario.dni)">
+                        Exportar
+                      </button>
+                      <button type="button" class="btn btn-outline-dark btn-sm m-1 mr-2" (click)="goReporte(usuario)">
+                        Reporte
+                      </button> -->
+                    </form>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </ng-container>
+      </div>
+    </div>
+    <ng-template #busqueda>
+      <div class="col-sm-12 col-md-8 bg-light inicio" *ngIf="usuarioB; else msg">
+        <div class="shadow-sm card mt-2">
+          <li class="media">
+            <img [src]="usuarioB.avatar" class="m-3 rounded-circle" width="60" alt="..." />
+            <div class="media-body">
+              <h5 class="mt-2 mb-0">{{ usuarioB?.displayName | titlecase }}</h5>
+              ({{ usuarioB?.dni }})
+              <hr class="mt-1 mb-1" />
+              <div class="d-flex w-100 justify-content-between mt-2 mb-2">
+                <form>
+                  <button type="button" class="btn btn-outline-primary btn-sm m-1" (click)="editUsuario(usuarioB)"
+                    *ngIf="auth.canDelete(auth.user$ | async)">
+                    Editar
+                  </button>
+                  <button type="button" class="btn btn-outline-danger btn-sm m-1"
+                    *ngIf="auth.canDelete(auth.user$ | async)" (click)="deleteUsusario(usuarioB)">
+                    Eliminar
+                  </button>
+                </form>
+                <form>
+                  <button type="button" class="btn btn-outline-secondary btn-sm m-1 mr-2"
+                    (click)="exportFiles(usuarioB.dni)">
+                    Exportar
+                  </button>
+                  <button type="button" class="btn btn-outline-dark btn-sm m-1 mr-2" (click)="goReporte(usuarioB)">
+                    Reporte
+                  </button>
+                </form>
+              </div>
+            </div>
+          </li>
+        </div>
+      </div>
+
+      <ng-template #msg>
+        <div class="col-sm-12 col-md-8 bg-light inicio">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Mensaje!</strong> No hay resultados para la busqueda.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>
+<svg role="button" [ngClass]="'no-hidden'" *ngIf="showGoUpButton" (click)="onScrollTop()" height="50"
+  viewBox="0 0 512 512" width="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <linearGradient id="a" gradientTransform="matrix(1 0 0 -1 0 -12310)" gradientUnits="userSpaceOnUse" x1="0" x2="512"
+    y1="-12566" y2="-12566">
+    <stop offset="0" stop-color="#00f38d" />
+    <stop offset="1" stop-color="#009eff" />
+  </linearGradient>
+  <path
+    d="m512 256c0 141.386719-114.613281 256-256 256s-256-114.613281-256-256 114.613281-256 256-256 256 114.613281 256 256zm0 0"
+    fill="url(#a)" />
+  <g fill="#fff">
+    <path d="m88.5 101.5h335v30h-335zm0 0" />
+    <path
+      d="m187.941406 222.148438 21.09375 21.332031 31.964844-31.605469v224.625h30v-224.335938l31.257812 31.257813 21.214844-21.214844-67.414062-67.410156zm0 0" />
+  </g>
+</svg>
+<div #editModal class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="usuario">
+        <div class="container">
+          <div class="row mb-2" >
+            <div class="col">
+              <label for="nivel">Registrar Datos:</label>
+              <input type="text" class="form-control" [(ngModel)]="usuario.displayName">
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="nivel">Publicar Mensajes</label>
+              <select class="form-control" [(ngModel)]="admin">
+                <option selected disabled value="">Choose...</option>
+                <option [ngValue]="true">SI</option>
+                <option [ngValue]="false">NO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button class="btn btn-primary" (click)="updateUsuario()">
+          Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

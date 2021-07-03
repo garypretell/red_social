@@ -1,0 +1,53 @@
+<div class="container-fluid mt-3">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation" (click)="onTabChanged(0)">
+      <a
+        class="nav-link active"
+        id="home-tab"
+        data-toggle="tab"
+        href="#home"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+        >Enfermedad Actual</a
+      >
+    </li>
+    <li class="nav-item" role="presentation" (click)="onTabChanged(1)">
+      <a
+        class="nav-link"
+        id="profile-tab"
+        data-toggle="tab"
+        href="#profile"
+        role="tab"
+        aria-controls="profile"
+        aria-selected="false"
+        >Consulta de Salud</a
+      >
+    </li>
+    <li class="nav-item" role="presentation" (click)="onTabChanged(2)">
+      <a
+        class="nav-link"
+        id="contact-tab"
+        data-toggle="tab"
+        href="#contact"
+        role="tab"
+        aria-controls="contact"
+        aria-selected="false"
+        >Exploración Física</a
+      >
+    </li>
+    <li class="nav-item" role="presentation" (click)="onTabChanged(3)">
+      <a
+        class="nav-link"
+        id="contacto-tab"
+        data-toggle="tab"
+        href="#contacto"
+        role="tab"
+        aria-controls="contacto"
+        aria-selected="false"
+        >Alergias</a
+      >
+    </li>
+  </ul>
+  <section style="margin-top: 15px;" #datoContainer></section>
+</div>
