@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AnyARecord } from 'dns';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Comentario } from 'src/app/shared/models/comentario.model';
 import { ComentarioService } from 'src/app/shared/services/comentario.service';
@@ -11,7 +12,7 @@ declare var $: any;
   styleUrls: ['./comentario-detail.component.css']
 })
 export class ComentarioDetailComponent implements OnInit {
-  @Input() comment!: Comentario;
+  @Input() comment!: AnyARecord;
   @Input() publicacion!: any;
   isEditing = false;
   constructor(
