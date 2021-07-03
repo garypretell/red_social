@@ -1,9 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ThisReceiver } from '@angular/compiler';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import Swal from "sweetalert2";
 declare const $: any;

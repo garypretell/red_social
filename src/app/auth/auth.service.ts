@@ -46,13 +46,13 @@ export class AuthService {
     });
   }
 
-  get usuarios(): Observable<User[]> {
+  get usuarios(): Observable<any[]> {
     return this._usuarios.asObservable();
   }
 
   async loadUsuarios(): Promise<any> {
     const query: any = await this.supabase
-      .from<User>('user')
+      .from('user')
       .select('*')
       .limit(10);
     return this._usuarios.next(query.data);
