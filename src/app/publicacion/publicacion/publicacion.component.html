@@ -449,7 +449,77 @@
             let i = index
           ">
           <div class="card shadow-sm p-3 mb-3 bg-white rounded">
+            <ng-container *ngIf="auth.user$ | async as user">
+              <div class="d-flex justify-content-end dropdown" *ngIf="user?.displayName == item.displayName" >
+                <svg class="dropdown-toggle"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" class="mr-3" width="20" height="20" version="1.1" id="Layer_1"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 488 488" style="enable-background:new 0 0 488 488;" xml:space="preserve">
+                  <circle style="fill:#7D38CE;" cx="51.2" cy="244" r="51.2" />
+                  <path style="fill:#8D4DE8;" d="M51.2,295.2C23.2,295.2,0,272,0,244" />
+                  <g>
+                    <path style="fill:#6728BF;" d="M102.4,244c0,28-23.2,51.2-51.2,51.2" />
+                    <path style="fill:#6728BF;" d="M15.2,208c20-20,52-20,72,0s20,52,0,72" />
+                  </g>
+                  <circle style="fill:#7D38CE;" cx="244" cy="244" r="51.2" />
+                  <path style="fill:#8D4DE8;" d="M244,295.2c-28,0-51.2-23.2-51.2-51.2" />
+                  <g>
+                    <path style="fill:#6728BF;" d="M295.2,244c0,28-23.2,51.2-51.2,51.2" />
+                    <path style="fill:#6728BF;" d="M208,208c20-20,52-20,72,0s20,52,0,72" />
+                  </g>
+                  <circle style="fill:#7D38CE;" cx="436.8" cy="244" r="51.2" />
+                  <path style="fill:#8D4DE8;" d="M436.8,295.2c-28,0-51.2-23.2-51.2-51.2" />
+                  <g>
+                    <path style="fill:#6728BF;" d="M488,244c0,28-23.2,51.2-51.2,51.2" />
+                    <path style="fill:#6728BF;" d="M400.8,208c20-20,52-20,72,0s20,52,0,72" />
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                  <g>
+                  </g>
+                </svg>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="Layer_1">
+                  <button class="dropdown-item" type="button" (click)="editarPublicacion(item)">
+                    <svg height="20" viewBox="0 -1 401.5411 401" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m381.289062 32.242188c13.671876 13.664062 13.671876 35.824218 0 49.488281l-17.679687 17.679687-61.230469-61.230468 17.679688-17.679688c13.671875-13.667969 35.832031-13.667969 49.5 0zm0 0" fill="#00acea"/><path d="m363.609375 99.410156-160.148437 160.160156h-.011719l-61.230469-61.230468 160.160156-160.160156zm0 0" fill="#00efd1"/><path d="m142.21875 198.339844 61.230469 61.230468-.570313.570313-84.6875 23.460937 23.457032-84.691406zm0 0" fill="#fedb41"/><g fill="#083863"><path d="m370.589844 250.960938c-5.523438 0-10 4.476562-10 10v88.789062c-.019532 16.5625-13.4375 29.980469-30 30h-280.589844c-16.5625-.019531-29.980469-13.4375-30-30v-260.589844c.019531-16.558594 13.4375-29.980468 30-30h88.789062c5.523438 0 10-4.476562 10-10 0-5.523437-4.476562-10-10-10h-88.789062c-27.601562.03125-49.96875 22.398438-50 50v260.589844c.03125 27.601562 22.398438 49.96875 50 50h280.589844c27.601562-.03125 49.96875-22.398438 50-50v-88.789062c0-5.523438-4.476563-10-10-10zm0 0"/><path d="m376.632812 13.429688c-17.589843-17.546876-46.058593-17.546876-63.644531 0l-178.410156 178.410156c-1.21875 1.222656-2.105469 2.738281-2.566406 4.398437l-23.457031 84.691407c-.964844 3.472656.015624 7.191406 2.5625 9.742187 2.550781 2.546875 6.269531 3.527344 9.742187 2.566406l84.691406-23.460937c1.664063-.460938 3.183594-1.347656 4.40625-2.570313l.566407-.570312 177.835937-177.835938c17.574219-17.570312 17.574219-46.058593 0-63.628906zm-229.675781 203.789062 37.613281 37.617188-52.03125 14.414062zm56.5 42.355469v-.007813l6.519531 6.519532zm0-14.140625-47.09375-47.09375 146.015625-146.015625 47.089844 47.085937zm170.761719-170.773438-10.609375 10.609375-47.085937-47.089843 10.609374-10.609376c9.765626-9.746093 25.582032-9.746093 35.351563 0l11.734375 11.746094c9.765625 9.757813 9.765625 25.585938 0 35.34375zm0 0"/></g></svg>
+                    Editar
+                  </button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" type="button" (click)="eliminarPublicacion(item)" >
+                    <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m256 80h-32v-48h-64v48h-32v-80h128zm0 0" fill="#62808c"/><path d="m304 512h-224c-26.507812 0-48-21.492188-48-48v-336h320v336c0 26.507812-21.492188 48-48 48zm0 0" fill="#e76e54"/><path d="m384 160h-384v-64c0-17.671875 14.328125-32 32-32h320c17.671875 0 32 14.328125 32 32zm0 0" fill="#77959e"/><path d="m260 260c-6.246094-6.246094-16.375-6.246094-22.625 0l-41.375 41.375-41.375-41.375c-6.25-6.246094-16.378906-6.246094-22.625 0s-6.246094 16.375 0 22.625l41.375 41.375-41.375 41.375c-6.246094 6.25-6.246094 16.378906 0 22.625s16.375 6.246094 22.625 0l41.375-41.375 41.375 41.375c6.25 6.246094 16.378906 6.246094 22.625 0s6.246094-16.375 0-22.625l-41.375-41.375 41.375-41.375c6.246094-6.25 6.246094-16.378906 0-22.625zm0 0" fill="#fff"/></svg>
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </ng-container>
+
+
             <div class="card-body">
+
               <div class="d-flex justify-content-between">
                 <div class="d-flex align-items-center">
                   <img width="50px" height="50px" class="rounded-circle" [src]="item.avatar" alt="" />
@@ -614,7 +684,8 @@
       </div>
       <div class="modal-body">
         <div class="d-flex align-items-center">
-          <img width="45" height="45" class="rounded-circle dropdown-toggle" [src]="user.avatar" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+          <img width="45" height="45" class="rounded-circle dropdown-toggle" [src]="user.avatar" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
           <span class="badge badge-pill badge-primary">{{
             user.displayName
             }}</span>
@@ -725,4 +796,19 @@
 </div>
 
 
-<svg role="button" [ngClass]="'no-hidden'" *ngIf="showGoUpButton" (click)="onScrollTop()"  height="50" viewBox="0 0 512 512" width="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><linearGradient id="a" gradientTransform="matrix(1 0 0 -1 0 -12310)" gradientUnits="userSpaceOnUse" x1="0" x2="512" y1="-12566" y2="-12566"><stop offset="0" stop-color="#00f38d"/><stop offset="1" stop-color="#009eff"/></linearGradient><path d="m512 256c0 141.386719-114.613281 256-256 256s-256-114.613281-256-256 114.613281-256 256-256 256 114.613281 256 256zm0 0" fill="url(#a)"/><g fill="#fff"><path d="m88.5 101.5h335v30h-335zm0 0"/><path d="m187.941406 222.148438 21.09375 21.332031 31.964844-31.605469v224.625h30v-224.335938l31.257812 31.257813 21.214844-21.214844-67.414062-67.410156zm0 0"/></g></svg>
+<svg role="button" [ngClass]="'no-hidden'" *ngIf="showGoUpButton" (click)="onScrollTop()" height="50"
+  viewBox="0 0 512 512" width="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <linearGradient id="a" gradientTransform="matrix(1 0 0 -1 0 -12310)" gradientUnits="userSpaceOnUse" x1="0" x2="512"
+    y1="-12566" y2="-12566">
+    <stop offset="0" stop-color="#00f38d" />
+    <stop offset="1" stop-color="#009eff" />
+  </linearGradient>
+  <path
+    d="m512 256c0 141.386719-114.613281 256-256 256s-256-114.613281-256-256 114.613281-256 256-256 256 114.613281 256 256zm0 0"
+    fill="url(#a)" />
+  <g fill="#fff">
+    <path d="m88.5 101.5h335v30h-335zm0 0" />
+    <path
+      d="m187.941406 222.148438 21.09375 21.332031 31.964844-31.605469v224.625h30v-224.335938l31.257812 31.257813 21.214844-21.214844-67.414062-67.410156zm0 0" />
+  </g>
+</svg>

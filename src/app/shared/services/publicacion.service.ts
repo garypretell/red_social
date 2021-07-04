@@ -147,17 +147,23 @@ export class PublicacionService {
         } else if (payload.eventType === 'UPDATE') {
           // Update one item
           const updatedItem: Publicacion = payload.new;
-          if (updatedItem.estado == 1 && updatedItem.comentarios == 0 && updatedItem.likes == 0) {
-            this._publicaciones.next([updatedItem, ...this._publicaciones.value]);
-          } else {
-              const foundIndex = this._publicaciones.value.findIndex(x => x.id == updatedItem.id);
-              if(this._publicaciones.value[foundIndex].likes < updatedItem.likes){
-                this._publicaciones.value[foundIndex].likes +=  1;
-              }else{
-                this._publicaciones.value[foundIndex].comentarios += 1;
-              }
-              
+          const foundIndex = this._publicaciones.value.findIndex(x => x.id == updatedItem.id);
+          if(this._publicaciones.value[foundIndex].message !== updatedItem.message ) {
+            this._publicaciones.value[foundIndex].message = updatedItem.message;
+          }else {
+            if (updatedItem.estado == 1 && updatedItem.comentarios == 0 && updatedItem.likes == 0) {
+              this._publicaciones.next([updatedItem, ...this._publicaciones.value]);
+            } else {
+               
+                if(this._publicaciones.value[foundIndex].likes < updatedItem.likes){
+                  this._publicaciones.value[foundIndex].likes +=  1;
+                }else{
+                  this._publicaciones.value[foundIndex].comentarios += 1;
+                }
+                
+            }
           }
+          
         }
       })
       .subscribe();
@@ -188,19 +194,17 @@ export class PublicacionService {
         } else if (payload.eventType === 'UPDATE') {
           // Update one item
           const updatedItem: Publicacion = payload.new;
-          if (updatedItem.estado === 1 || updatedItem.estado === 2) {
-            const newValue = this._publicacionesAprobar.value.filter(
-              (item) => updatedItem.id !== item.id
-            );
-            console.log('aaa');
-            this._publicacionesAprobar.next(newValue);
+          const foundIndex = this._publicaciones.value.findIndex(x => x.id == updatedItem.id);
+          if(this._publicaciones.value[foundIndex].message !== updatedItem.message ) {
+            this._publicaciones.value[foundIndex].message = updatedItem.message;
+          }else {
+            if (updatedItem.estado === 1 || updatedItem.estado === 2) {
+              const newValue = this._publicacionesAprobar.value.filter(
+                (item) => updatedItem.id !== item.id
+              );
+              this._publicacionesAprobar.next(newValue);
+            }
           }
-          // if(updatedItem.estado === 2){
-          //   const newValue = this._publicacionesAprobar.value.filter(
-          //     (item) => updatedItem.id !== item.id
-          //   );
-          //   this._publicacionesAprobar.next(newValue);
-          // }
         }
       })
       .subscribe();

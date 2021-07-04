@@ -228,4 +228,50 @@ export class PublicacionComponent implements OnInit, OnDestroy {
     this.document.documentElement.scrollTop = 0; // Other
   }
 
+  eliminarPublicacion(p: any): any {
+    Swal.fire({
+      title: 'Esta seguro de Eliminar esta publicación?',
+      text: "no podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.publicacionService.deletePublicacion(p.id);
+        Swal.fire(
+          'Eliminado!',
+          'La Publicación ha sido eliminada.',
+          'success'
+        )
+      }
+    })
+  }
+
+  async editarPublicacion(p: any) {
+    const { value: text } = await Swal.fire({
+      input: 'textarea',
+      inputValue: p.message,
+      inputLabel: 'Editar Publicación',
+      inputPlaceholder: 'Editar Publicación...',
+      inputAttributes: {
+        'aria-label': 'Editar Publicación'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      cancelButtonText: 'Cancelar',
+    })
+    
+    if (text) {
+      p.message = text;
+      this.publicacionService.update(p.id, p);
+      Swal.fire(
+        'Publicación',
+        'La publicación ha sido actualizada!',
+        'info'
+      )
+    }
+  }
+
 }
