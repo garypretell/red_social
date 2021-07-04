@@ -150,6 +150,7 @@ export class PublicacionService {
           const foundIndex = this._publicaciones.value.findIndex(x => x.id == updatedItem.id);
           if(this._publicaciones.value[foundIndex].message !== updatedItem.message ) {
             this._publicaciones.value[foundIndex].message = updatedItem.message;
+            return;
           }else {
             if (updatedItem.estado == 1 && updatedItem.comentarios == 0 && updatedItem.likes == 0) {
               this._publicaciones.next([updatedItem, ...this._publicaciones.value]);

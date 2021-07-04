@@ -250,9 +250,10 @@ export class PublicacionComponent implements OnInit, OnDestroy {
   }
 
   async editarPublicacion(p: any) {
+    const pubEdit = await this.publicacionService.publicacionId(p.id);
     const { value: text } = await Swal.fire({
       input: 'textarea',
-      inputValue: p.message,
+      inputValue: pubEdit.message,
       inputLabel: 'Editar Publicación',
       inputPlaceholder: 'Editar Publicación...',
       inputAttributes: {
@@ -264,8 +265,8 @@ export class PublicacionComponent implements OnInit, OnDestroy {
     })
     
     if (text) {
-      p.message = text;
-      this.publicacionService.update(p.id, p);
+      pubEdit.message = text;
+      this.publicacionService.update(p.id, pubEdit);
       Swal.fire(
         'Publicación',
         'La publicación ha sido actualizada!',
