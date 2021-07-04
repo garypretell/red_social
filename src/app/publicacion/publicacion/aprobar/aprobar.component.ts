@@ -21,11 +21,12 @@ export class AprobarComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-    this.publicacionService.loadPublicacionesAprobar();
-    this.publicacionService.listenAllAprobar();
+    await this.publicacionService.loadPublicacionesAprobar();
+    await this.publicacionService.listenAllAprobar();
   }
 
-  aprobarPublicacion(item: any): any {
+  async aprobarPublicacion(item: any): Promise<any> {
+    const pubEdit = await this.publicacionService.publicacionId(item.id);
     Swal.fire({
       title: 'Esta seguro de aprobar esta publicación?',
       text: "Aprobar Publicación...",
@@ -37,9 +38,9 @@ export class AprobarComponent implements OnInit, OnDestroy {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        item.estado = 1;
-        item.date = Date.now();
-        this.publicacionService.update(item.id, item);
+        pubEdit.estado = +1;
+        pubEdit.date = +Date.now();
+        this.publicacionService.update(pubEdit.id, pubEdit);
         Swal.fire(
           'Aprobado!',
           'La publicación ha sido aprobada.',
@@ -49,7 +50,8 @@ export class AprobarComponent implements OnInit, OnDestroy {
     })
   }
 
-  rechazarPublicacion(item: any): any {
+  async rechazarPublicacion(item: any): Promise<any> {
+    const pubEdit = await this.publicacionService.publicacionId(item.id);
     Swal.fire({
       title: 'Esta seguro de rechazar esta publicación?',
       text: "Rechazar Publicación...",
@@ -61,9 +63,9 @@ export class AprobarComponent implements OnInit, OnDestroy {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        item.estado = 2;
-        item.date = Date.now();
-        this.publicacionService.update(item.id, item);
+        pubEdit.estado = +2;
+        pubEdit.date = +Date.now();
+        this.publicacionService.update(pubEdit.id, pubEdit);
         Swal.fire(
           'Rechazado!',
           'La publicación ha sido rechazada.',
