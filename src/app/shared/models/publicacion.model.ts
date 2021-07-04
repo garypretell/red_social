@@ -10,4 +10,5 @@ export interface Publicacion {
     likes: number;
     compartir: number;
     estado: number;
+    uid: string;
 }

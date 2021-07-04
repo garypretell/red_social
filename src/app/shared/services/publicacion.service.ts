@@ -152,10 +152,9 @@ export class PublicacionService {
               this._publicaciones.value[foundIndex].message = updatedItem.message;
               return;
             }else {
-              if (updatedItem.estado == 1 && updatedItem.comentarios == 0 && updatedItem.likes == 0) {
+              if (updatedItem.estado === 1 && updatedItem.comentarios === 0 && updatedItem.likes === 0) {
                 this._publicaciones.next([updatedItem, ...this._publicaciones.value]);
               } else {
-                 
                   if(this._publicaciones.value[foundIndex].likes < updatedItem.likes){
                     this._publicaciones.value[foundIndex].likes +=  1;
                   }else{

@@ -155,6 +155,7 @@ export class AppHeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.storageService.uploadFile(user.uid, this.imagen).then((data) => {
         if (data) {
           const publicacion: any = {
+            uid: user.uid,
             displayName: user.displayName,
             avatar: user.avatar,
             message: this.publicacionForm.get('comentario')!.value,

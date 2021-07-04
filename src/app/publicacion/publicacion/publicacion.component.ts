@@ -148,6 +148,7 @@ export class PublicacionComponent implements OnInit, OnDestroy {
       this.storageService.uploadFile(user.uid, this.imagen).then((data) => {
         if (data) {
           const publicacion: any = {
+            uid: user.uid,
             displayName: user.displayName,
             avatar: user.avatar,
             message: this.publicacionForm.get('comentario')!.value,
