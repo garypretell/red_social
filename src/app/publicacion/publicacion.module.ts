@@ -12,6 +12,7 @@ import { SaltoPipe } from '../shared/pipes/salto.pipe';
 import { AprobarComponent } from './publicacion/aprobar/aprobar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ScrollableDirective } from '../shared/directive/scrollable.directive';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,10 @@ import { ScrollableDirective } from '../shared/directive/scrollable.directive';
     SaltoPipe,
     AprobarComponent,
     ScrollableDirective
+    
   ],
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule, PublicacionRoutingModule, MomentModule, InfiniteScrollModule
+    CommonModule, FormsModule, ReactiveFormsModule, PublicacionRoutingModule, MomentModule, InfiniteScrollModule, ClipboardModule
   ],
   providers: [ ],
 })

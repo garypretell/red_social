@@ -15,6 +15,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { TagInputModule } from 'ngx-chips';
 import { AuthInterceptorService } from './shared/authInterceptor';
+import { ClipboardModule } from 'ngx-clipboard';
+
 
 export function tokenGetter(): any {
   return localStorage.getItem('token');
@@ -37,6 +39,7 @@ export function tokenGetter(): any {
     AppRoutingModule,
     MomentModule,
     InfiniteScrollModule,
+    ClipboardModule,
     JwtModule.forRoot({
       config: {
         tokenGetter

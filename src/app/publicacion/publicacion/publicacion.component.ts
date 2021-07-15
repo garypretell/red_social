@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, ViewChi
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ClipboardService } from 'ngx-clipboard';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Comentario } from 'src/app/shared/models/comentario.model';
 import { FileInfo } from 'src/app/shared/models/fileInfo.model';
@@ -37,7 +38,7 @@ export class PublicacionComponent implements OnInit, OnDestroy {
 
   private showScrollHeight = 500;
   constructor(@Inject(DOCUMENT) private document:Document, private storageService: StorageService, public formBuilder: FormBuilder, private dom: DomSanitizer, public router: Router,
-    public auth: AuthService, public publicacionService: PublicacionService, public comentarioService: ComentarioService) {
+    public auth: AuthService, public publicacionService: PublicacionService, public comentarioService: ComentarioService, private _clipboardService: ClipboardService) {
     this.publicacionForm = this.formBuilder.group({
       comentario: ['', [Validators.required]],
       youtube: ['']
@@ -48,6 +49,33 @@ export class PublicacionComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+    this._clipboardService.copyResponse$.subscribe(re => {
+      if (re.isSuccess) {
+        // Swal.fire({
+        //   position: 'top-end',
+        //   icon: 'success',
+        //   title: 'Link ha sido creado con éxito!',
+        //   showConfirmButton: false,
+        //   timer: 700
+        // })
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Link listo para compartir!'
+        })
+      }
+  });
     this.publicacionService.loadPublicaciones();
     this.publicacionService.listenAll();
   }
@@ -86,7 +114,6 @@ export class PublicacionComponent implements OnInit, OnDestroy {
     }
 
     this.storageService.uploadFile(info, file).then((data) => {
-      console.log(data.data);
     }).catch((err) => console.log(err));
   }
 
@@ -274,6 +301,10 @@ export class PublicacionComponent implements OnInit, OnDestroy {
         'info'
       )
     }
+  }
+
+  sharePublicacion(p: any): any {
+    this._clipboardService.copy(`https://red-social.vercel.app/publicacion/${p.id}`);
   }
 
 }
